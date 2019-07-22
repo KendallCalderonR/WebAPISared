@@ -1,0 +1,2356 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ARE_EskolorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Canton">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idProvincia" Type="int" Nullable="false" />
+          <Property Name="canton" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idRole" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="cedula" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DireccionCliente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="idProvincia" Type="int" Nullable="false" />
+          <Property Name="idCanton" Type="int" Nullable="false" />
+          <Property Name="idDistrito" Type="int" Nullable="false" />
+          <Property Name="idTipoDireccion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Distrito">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCanton" Type="int" Nullable="false" />
+          <Property Name="Distrito" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Marca">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="marca" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="idEstado" Type="int" Nullable="false" />
+          <Property Name="idPedido" Type="int" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Permisos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="permiso" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PermisosxPerfil">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPermiso" Type="int" Nullable="false" />
+          <Property Name="idPerfil" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="producto" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="idMarca" Type="int" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductosxPedido">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPedido" Type="int" Nullable="false" />
+          <Property Name="idProducto" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="float" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Provincia">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="provincia" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TelefonoCliente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="idTipoTelefono" Type="int" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoDireccion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipoDireccion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoTelefono">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipoTelefono" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPerfil" Type="int" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="contraseña" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="correoElectronico" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Visita">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="fechaHoraInicio" Type="datetime" Nullable="false" />
+          <Property Name="fechaHoraFinal" Type="datetime" Nullable="false" />
+          <Property Name="ubicacionGPS" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Canton_Provincia">
+          <End Role="Provincia" Type="Self.Provincia" Multiplicity="1" />
+          <End Role="Canton" Type="Self.Canton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincia">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Canton">
+              <PropertyRef Name="idProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DireccionCliente_Canton">
+          <End Role="Canton" Type="Self.Canton" Multiplicity="1" />
+          <End Role="DireccionCliente" Type="Self.DireccionCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Canton">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DireccionCliente">
+              <PropertyRef Name="idCanton" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DireccionCliente_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="DireccionCliente" Type="Self.DireccionCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DireccionCliente">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DireccionCliente_Distrito">
+          <End Role="Distrito" Type="Self.Distrito" Multiplicity="1" />
+          <End Role="DireccionCliente" Type="Self.DireccionCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Distrito">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DireccionCliente">
+              <PropertyRef Name="idDistrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DireccionCliente_Provincia">
+          <End Role="Provincia" Type="Self.Provincia" Multiplicity="1" />
+          <End Role="DireccionCliente" Type="Self.DireccionCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincia">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DireccionCliente">
+              <PropertyRef Name="idProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DireccionCliente_TipoDireccion">
+          <End Role="TipoDireccion" Type="Self.TipoDireccion" Multiplicity="1" />
+          <End Role="DireccionCliente" Type="Self.DireccionCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDireccion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DireccionCliente">
+              <PropertyRef Name="idTipoDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Distrito_Canton">
+          <End Role="Canton" Type="Self.Canton" Multiplicity="1" />
+          <End Role="Distrito" Type="Self.Distrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Canton">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Distrito">
+              <PropertyRef Name="idCanton" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedido_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedido_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermisosxPerfil_Perfil">
+          <End Role="Perfil" Type="Self.Perfil" Multiplicity="1" />
+          <End Role="PermisosxPerfil" Type="Self.PermisosxPerfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PermisosxPerfil">
+              <PropertyRef Name="idPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermisosxPerfil_Permisos">
+          <End Role="Permisos" Type="Self.Permisos" Multiplicity="1" />
+          <End Role="PermisosxPerfil" Type="Self.PermisosxPerfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permisos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PermisosxPerfil">
+              <PropertyRef Name="idPermiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Producto_Marca">
+          <End Role="Marca" Type="Self.Marca" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="idMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductosxPedido_Pedido">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+          <End Role="ProductosxPedido" Type="Self.ProductosxPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductosxPedido">
+              <PropertyRef Name="idPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductosxPedido_Producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="ProductosxPedido" Type="Self.ProductosxPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductosxPedido">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TelefonoCliente_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="TelefonoCliente" Type="Self.TelefonoCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TelefonoCliente">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TelefonoCliente_TipoTelefono">
+          <End Role="TipoTelefono" Type="Self.TipoTelefono" Multiplicity="1" />
+          <End Role="TelefonoCliente" Type="Self.TelefonoCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTelefono">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TelefonoCliente">
+              <PropertyRef Name="idTipoTelefono" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Perfil">
+          <End Role="Perfil" Type="Self.Perfil" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visita_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Visita" Type="Self.Visita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Visita">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visita_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Visita" Type="Self.Visita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Visita">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="crud_ClienteDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_ClienteInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idRole" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellido" Type="varchar" Mode="In" />
+          <Parameter Name="cedula" Type="varchar" Mode="In" />
+          <Parameter Name="correo" Type="varchar" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+        </Function>
+        <Function Name="crud_ClienteRead" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="crud_ClienteReadID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_ClienteUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="idRole" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellido" Type="varchar" Mode="In" />
+          <Parameter Name="cedula" Type="varchar" Mode="In" />
+          <Parameter Name="correo" Type="varchar" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+        </Function>
+        <Function Name="crud_DireccionClienteDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_DireccionClienteInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idCliente" Type="int" Mode="In" />
+          <Parameter Name="direccion" Type="varchar" Mode="In" />
+          <Parameter Name="idProvincia" Type="int" Mode="In" />
+          <Parameter Name="idCanton" Type="int" Mode="In" />
+          <Parameter Name="idDistrito" Type="int" Mode="In" />
+          <Parameter Name="idTipoDireccion" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_DireccionClienteRead" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="crud_DireccionClienteReadID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_DireccionClienteUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="idCliente" Type="int" Mode="In" />
+          <Parameter Name="direccion" Type="varchar" Mode="In" />
+          <Parameter Name="idProvincia" Type="int" Mode="In" />
+          <Parameter Name="idCanton" Type="int" Mode="In" />
+          <Parameter Name="idDistrito" Type="int" Mode="In" />
+          <Parameter Name="idTipoDireccion" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_MarcaDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_MarcaInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="marca" Type="varchar" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="crud_MarcaRead" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="crud_MarcaReadID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_MarcaUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="marca" Type="varchar" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="crud_PedidoDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_PedidoInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+          <Parameter Name="idCliente" Type="int" Mode="In" />
+          <Parameter Name="idEstado" Type="int" Mode="In" />
+          <Parameter Name="idPedido" Type="int" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+        </Function>
+        <Function Name="crud_PedidoRead" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="crud_PedidoReadID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_PedidoUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+          <Parameter Name="idCliente" Type="int" Mode="In" />
+          <Parameter Name="idEstado" Type="int" Mode="In" />
+          <Parameter Name="idPedido" Type="int" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+        </Function>
+        <Function Name="crud_PerfilDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_PerfilInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+        </Function>
+        <Function Name="crud_PerfilRead" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="crud_PerfilReadID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_PerfilUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+        </Function>
+        <Function Name="crud_PermisosDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_PermisosInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="permiso" Type="varchar" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+        </Function>
+        <Function Name="crud_PermisosRead" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="crud_PermisosReadID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_PermisosxPerfilDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idPermiso" Type="int" Mode="In" />
+          <Parameter Name="idPerfil" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_PermisosxPerfilInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idPermiso" Type="int" Mode="In" />
+          <Parameter Name="idPerfil" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_PermisosxPerfilRead" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idPerfil" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_PermisosxPerfilReadID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idPermiso" Type="int" Mode="In" />
+          <Parameter Name="idPerfil" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_ProductoDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_ProductoInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="producto" Type="varchar" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="idMarca" Type="int" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+        </Function>
+        <Function Name="crud_ProductoRead" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="crud_ProductoReadID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_ProductosxPedidoDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_ProductosxPedidoInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idPedido" Type="int" Mode="In" />
+          <Parameter Name="idProducto" Type="int" Mode="In" />
+          <Parameter Name="cantidad" Type="float" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+        </Function>
+        <Function Name="crud_ProductosxPedidoRead" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idPedido" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_ProductosxPedidoReadID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_ProductosxPedidoUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="idPedido" Type="int" Mode="In" />
+          <Parameter Name="idProducto" Type="int" Mode="In" />
+          <Parameter Name="cantidad" Type="float" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+        </Function>
+        <Function Name="crud_ProductoUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="producto" Type="varchar" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="idMarca" Type="int" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+        </Function>
+        <Function Name="crud_TelefonoClienteDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_TelefonoClienteInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idCliente" Type="int" Mode="In" />
+          <Parameter Name="idTipoTelefono" Type="int" Mode="In" />
+          <Parameter Name="telefono" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="crud_TelefonoClienteRead" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idCliente" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_TelefonoClienteReadID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_TelefonoClienteUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="idCliente" Type="int" Mode="In" />
+          <Parameter Name="idTipoTelefono" Type="int" Mode="In" />
+          <Parameter Name="telefono" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="crud_TipoDireccionDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_TipoDireccionInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tipoDireccion" Type="varchar" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+        </Function>
+        <Function Name="crud_TipoDireccionRead" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="crud_TipoDireccionReadID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_TipoDireccionUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="tipoDireccion" Type="varchar" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+        </Function>
+        <Function Name="crud_TipoTelefonoDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_TipoTelefonoInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tipoTelefono" Type="varchar" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+        </Function>
+        <Function Name="crud_TipoTelefonoRead" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="crud_TipoTelefonoReadID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_TipoTelefonoUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="tipoTelefono" Type="varchar" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+        </Function>
+        <Function Name="crud_UsuarioDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Original_ID" Type="int" Mode="In" />
+          <Parameter Name="Original_idPerfil" Type="int" Mode="In" />
+          <Parameter Name="Original_usuario" Type="varchar" Mode="In" />
+          <Parameter Name="Original_contraseña" Type="varchar" Mode="In" />
+          <Parameter Name="Original_nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Original_apellido" Type="varchar" Mode="In" />
+          <Parameter Name="Original_correoElectronico" Type="varchar" Mode="In" />
+          <Parameter Name="Original_estado" Type="char" Mode="In" />
+        </Function>
+        <Function Name="crud_UsuarioInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idPerfil" Type="int" Mode="In" />
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="contraseña" Type="varchar" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellido" Type="varchar" Mode="In" />
+          <Parameter Name="correoElectronico" Type="varchar" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+        </Function>
+        <Function Name="crud_UsuarioRead" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="crud_UsuarioUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idPerfil" Type="int" Mode="In" />
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="contraseña" Type="varchar" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellido" Type="varchar" Mode="In" />
+          <Parameter Name="correoElectronico" Type="varchar" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+          <Parameter Name="Original_ID" Type="int" Mode="In" />
+          <Parameter Name="Original_idPerfil" Type="int" Mode="In" />
+          <Parameter Name="Original_usuario" Type="varchar" Mode="In" />
+          <Parameter Name="Original_contraseña" Type="varchar" Mode="In" />
+          <Parameter Name="Original_nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Original_apellido" Type="varchar" Mode="In" />
+          <Parameter Name="Original_correoElectronico" Type="varchar" Mode="In" />
+          <Parameter Name="Original_estado" Type="char" Mode="In" />
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_VisitaDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_VisitaInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+          <Parameter Name="fechaHoraInicio" Type="datetime" Mode="In" />
+          <Parameter Name="fechaHoraFinal" Type="datetime" Mode="In" />
+          <Parameter Name="ubicacionGPS" Type="varchar" Mode="In" />
+          <Parameter Name="idCliente" Type="int" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+        </Function>
+        <Function Name="crud_VisitaRead" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="crud_VisitaReadID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="crud_VisitaUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+          <Parameter Name="fechaHoraInicio" Type="datetime" Mode="In" />
+          <Parameter Name="fechaHoraFinal" Type="datetime" Mode="In" />
+          <Parameter Name="ubicacionGPS" Type="varchar" Mode="In" />
+          <Parameter Name="idCliente" Type="int" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+        </Function>
+        <EntityContainer Name="ARE_EskolorModelStoreContainer">
+          <EntitySet Name="Canton" EntityType="Self.Canton" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DireccionCliente" EntityType="Self.DireccionCliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Distrito" EntityType="Self.Distrito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marca" EntityType="Self.Marca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permisos" EntityType="Self.Permisos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PermisosxPerfil" EntityType="Self.PermisosxPerfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductosxPedido" EntityType="Self.ProductosxPedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TelefonoCliente" EntityType="Self.TelefonoCliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoDireccion" EntityType="Self.TipoDireccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoTelefono" EntityType="Self.TipoTelefono" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Visita" EntityType="Self.Visita" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Canton_Provincia" Association="Self.FK_Canton_Provincia">
+            <End Role="Provincia" EntitySet="Provincia" />
+            <End Role="Canton" EntitySet="Canton" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DireccionCliente_Canton" Association="Self.FK_DireccionCliente_Canton">
+            <End Role="Canton" EntitySet="Canton" />
+            <End Role="DireccionCliente" EntitySet="DireccionCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DireccionCliente_Cliente" Association="Self.FK_DireccionCliente_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="DireccionCliente" EntitySet="DireccionCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DireccionCliente_Distrito" Association="Self.FK_DireccionCliente_Distrito">
+            <End Role="Distrito" EntitySet="Distrito" />
+            <End Role="DireccionCliente" EntitySet="DireccionCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DireccionCliente_Provincia" Association="Self.FK_DireccionCliente_Provincia">
+            <End Role="Provincia" EntitySet="Provincia" />
+            <End Role="DireccionCliente" EntitySet="DireccionCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DireccionCliente_TipoDireccion" Association="Self.FK_DireccionCliente_TipoDireccion">
+            <End Role="TipoDireccion" EntitySet="TipoDireccion" />
+            <End Role="DireccionCliente" EntitySet="DireccionCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Distrito_Canton" Association="Self.FK_Distrito_Canton">
+            <End Role="Canton" EntitySet="Canton" />
+            <End Role="Distrito" EntitySet="Distrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedido_Cliente" Association="Self.FK_Pedido_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedido_Usuario" Association="Self.FK_Pedido_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermisosxPerfil_Perfil" Association="Self.FK_PermisosxPerfil_Perfil">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="PermisosxPerfil" EntitySet="PermisosxPerfil" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermisosxPerfil_Permisos" Association="Self.FK_PermisosxPerfil_Permisos">
+            <End Role="Permisos" EntitySet="Permisos" />
+            <End Role="PermisosxPerfil" EntitySet="PermisosxPerfil" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto_Marca" Association="Self.FK_Producto_Marca">
+            <End Role="Marca" EntitySet="Marca" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductosxPedido_Pedido" Association="Self.FK_ProductosxPedido_Pedido">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="ProductosxPedido" EntitySet="ProductosxPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductosxPedido_Producto" Association="Self.FK_ProductosxPedido_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="ProductosxPedido" EntitySet="ProductosxPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TelefonoCliente_Cliente" Association="Self.FK_TelefonoCliente_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="TelefonoCliente" EntitySet="TelefonoCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TelefonoCliente_TipoTelefono" Association="Self.FK_TelefonoCliente_TipoTelefono">
+            <End Role="TipoTelefono" EntitySet="TipoTelefono" />
+            <End Role="TelefonoCliente" EntitySet="TelefonoCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Perfil" Association="Self.FK_Usuario_Perfil">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visita_Cliente" Association="Self.FK_Visita_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Visita" EntitySet="Visita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visita_Usuario" Association="Self.FK_Visita_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Visita" EntitySet="Visita" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ARE_EskolorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Canton">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idProvincia" Type="Int32" Nullable="false" />
+          <Property Name="canton1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Provincia" Relationship="Self.FK_Canton_Provincia" FromRole="Canton" ToRole="Provincia" />
+          <NavigationProperty Name="DireccionCliente" Relationship="Self.FK_DireccionCliente_Canton" FromRole="Canton" ToRole="DireccionCliente" />
+          <NavigationProperty Name="Distrito" Relationship="Self.FK_Distrito_Canton" FromRole="Canton" ToRole="Distrito" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idRole" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cedula" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DireccionCliente" Relationship="Self.FK_DireccionCliente_Cliente" FromRole="Cliente" ToRole="DireccionCliente" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Cliente" FromRole="Cliente" ToRole="Pedido" />
+          <NavigationProperty Name="TelefonoCliente" Relationship="Self.FK_TelefonoCliente_Cliente" FromRole="Cliente" ToRole="TelefonoCliente" />
+          <NavigationProperty Name="Visita" Relationship="Self.FK_Visita_Cliente" FromRole="Cliente" ToRole="Visita" />
+        </EntityType>
+        <EntityType Name="DireccionCliente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idProvincia" Type="Int32" Nullable="false" />
+          <Property Name="idCanton" Type="Int32" Nullable="false" />
+          <Property Name="idDistrito" Type="Int32" Nullable="false" />
+          <Property Name="idTipoDireccion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Canton" Relationship="Self.FK_DireccionCliente_Canton" FromRole="DireccionCliente" ToRole="Canton" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_DireccionCliente_Cliente" FromRole="DireccionCliente" ToRole="Cliente" />
+          <NavigationProperty Name="Distrito" Relationship="Self.FK_DireccionCliente_Distrito" FromRole="DireccionCliente" ToRole="Distrito" />
+          <NavigationProperty Name="Provincia" Relationship="Self.FK_DireccionCliente_Provincia" FromRole="DireccionCliente" ToRole="Provincia" />
+          <NavigationProperty Name="TipoDireccion" Relationship="Self.FK_DireccionCliente_TipoDireccion" FromRole="DireccionCliente" ToRole="TipoDireccion" />
+        </EntityType>
+        <EntityType Name="Distrito">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCanton" Type="Int32" Nullable="false" />
+          <Property Name="Distrito1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Canton" Relationship="Self.FK_Distrito_Canton" FromRole="Distrito" ToRole="Canton" />
+          <NavigationProperty Name="DireccionCliente" Relationship="Self.FK_DireccionCliente_Distrito" FromRole="Distrito" ToRole="DireccionCliente" />
+        </EntityType>
+        <EntityType Name="Marca">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="marca1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK_Producto_Marca" FromRole="Marca" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="idEstado" Type="Int32" Nullable="false" />
+          <Property Name="idPedido" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Pedido_Cliente" FromRole="Pedido" ToRole="Cliente" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Pedido_Usuario" FromRole="Pedido" ToRole="Usuario" />
+          <NavigationProperty Name="ProductosxPedido" Relationship="Self.FK_ProductosxPedido_Pedido" FromRole="Pedido" ToRole="ProductosxPedido" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PermisosxPerfil" Relationship="Self.FK_PermisosxPerfil_Perfil" FromRole="Perfil" ToRole="PermisosxPerfil" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Usuario_Perfil" FromRole="Perfil" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Permisos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="permiso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PermisosxPerfil" Relationship="Self.FK_PermisosxPerfil_Permisos" FromRole="Permisos" ToRole="PermisosxPerfil" />
+        </EntityType>
+        <EntityType Name="PermisosxPerfil">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPermiso" Type="Int32" Nullable="false" />
+          <Property Name="idPerfil" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Perfil" Relationship="Self.FK_PermisosxPerfil_Perfil" FromRole="PermisosxPerfil" ToRole="Perfil" />
+          <NavigationProperty Name="Permisos" Relationship="Self.FK_PermisosxPerfil_Permisos" FromRole="PermisosxPerfil" ToRole="Permisos" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="producto1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idMarca" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Marca" Relationship="Self.FK_Producto_Marca" FromRole="Producto" ToRole="Marca" />
+          <NavigationProperty Name="ProductosxPedido" Relationship="Self.FK_ProductosxPedido_Producto" FromRole="Producto" ToRole="ProductosxPedido" />
+        </EntityType>
+        <EntityType Name="ProductosxPedido">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPedido" Type="Int32" Nullable="false" />
+          <Property Name="idProducto" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Double" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK_ProductosxPedido_Pedido" FromRole="ProductosxPedido" ToRole="Pedido" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK_ProductosxPedido_Producto" FromRole="ProductosxPedido" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Provincia">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="provincia1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Canton" Relationship="Self.FK_Canton_Provincia" FromRole="Provincia" ToRole="Canton" />
+          <NavigationProperty Name="DireccionCliente" Relationship="Self.FK_DireccionCliente_Provincia" FromRole="Provincia" ToRole="DireccionCliente" />
+        </EntityType>
+        <EntityType Name="TelefonoCliente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="idTipoTelefono" Type="Int32" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_TelefonoCliente_Cliente" FromRole="TelefonoCliente" ToRole="Cliente" />
+          <NavigationProperty Name="TipoTelefono" Relationship="Self.FK_TelefonoCliente_TipoTelefono" FromRole="TelefonoCliente" ToRole="TipoTelefono" />
+        </EntityType>
+        <EntityType Name="TipoDireccion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipoDireccion1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DireccionCliente" Relationship="Self.FK_DireccionCliente_TipoDireccion" FromRole="TipoDireccion" ToRole="DireccionCliente" />
+        </EntityType>
+        <EntityType Name="TipoTelefono">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipoTelefono1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TelefonoCliente" Relationship="Self.FK_TelefonoCliente_TipoTelefono" FromRole="TipoTelefono" ToRole="TelefonoCliente" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPerfil" Type="Int32" Nullable="false" />
+          <Property Name="usuario1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contraseña" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correoElectronico" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Usuario" FromRole="Usuario" ToRole="Pedido" />
+          <NavigationProperty Name="Perfil" Relationship="Self.FK_Usuario_Perfil" FromRole="Usuario" ToRole="Perfil" />
+          <NavigationProperty Name="Visita" Relationship="Self.FK_Visita_Usuario" FromRole="Usuario" ToRole="Visita" />
+        </EntityType>
+        <EntityType Name="Visita">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="fechaHoraInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaHoraFinal" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ubicacionGPS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Visita_Cliente" FromRole="Visita" ToRole="Cliente" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Visita_Usuario" FromRole="Visita" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK_Canton_Provincia">
+          <End Role="Provincia" Type="Self.Provincia" Multiplicity="1" />
+          <End Role="Canton" Type="Self.Canton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincia">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Canton">
+              <PropertyRef Name="idProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DireccionCliente_Canton">
+          <End Role="Canton" Type="Self.Canton" Multiplicity="1" />
+          <End Role="DireccionCliente" Type="Self.DireccionCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Canton">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DireccionCliente">
+              <PropertyRef Name="idCanton" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Distrito_Canton">
+          <End Role="Canton" Type="Self.Canton" Multiplicity="1" />
+          <End Role="Distrito" Type="Self.Distrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Canton">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Distrito">
+              <PropertyRef Name="idCanton" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DireccionCliente_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="DireccionCliente" Type="Self.DireccionCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DireccionCliente">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedido_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TelefonoCliente_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="TelefonoCliente" Type="Self.TelefonoCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TelefonoCliente">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visita_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Visita" Type="Self.Visita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Visita">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DireccionCliente_Distrito">
+          <End Role="Distrito" Type="Self.Distrito" Multiplicity="1" />
+          <End Role="DireccionCliente" Type="Self.DireccionCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Distrito">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DireccionCliente">
+              <PropertyRef Name="idDistrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DireccionCliente_Provincia">
+          <End Role="Provincia" Type="Self.Provincia" Multiplicity="1" />
+          <End Role="DireccionCliente" Type="Self.DireccionCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincia">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DireccionCliente">
+              <PropertyRef Name="idProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DireccionCliente_TipoDireccion">
+          <End Role="TipoDireccion" Type="Self.TipoDireccion" Multiplicity="1" />
+          <End Role="DireccionCliente" Type="Self.DireccionCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDireccion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DireccionCliente">
+              <PropertyRef Name="idTipoDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Producto_Marca">
+          <End Role="Marca" Type="Self.Marca" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="idMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedido_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductosxPedido_Pedido">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+          <End Role="ProductosxPedido" Type="Self.ProductosxPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductosxPedido">
+              <PropertyRef Name="idPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermisosxPerfil_Perfil">
+          <End Role="Perfil" Type="Self.Perfil" Multiplicity="1" />
+          <End Role="PermisosxPerfil" Type="Self.PermisosxPerfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PermisosxPerfil">
+              <PropertyRef Name="idPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Perfil">
+          <End Role="Perfil" Type="Self.Perfil" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermisosxPerfil_Permisos">
+          <End Role="Permisos" Type="Self.Permisos" Multiplicity="1" />
+          <End Role="PermisosxPerfil" Type="Self.PermisosxPerfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permisos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PermisosxPerfil">
+              <PropertyRef Name="idPermiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductosxPedido_Producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="ProductosxPedido" Type="Self.ProductosxPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductosxPedido">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TelefonoCliente_TipoTelefono">
+          <End Role="TipoTelefono" Type="Self.TipoTelefono" Multiplicity="1" />
+          <End Role="TelefonoCliente" Type="Self.TelefonoCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTelefono">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TelefonoCliente">
+              <PropertyRef Name="idTipoTelefono" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visita_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Visita" Type="Self.Visita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Visita">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ARE_EskolorEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Canton" EntityType="Self.Canton" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="DireccionCliente" EntityType="Self.DireccionCliente" />
+          <EntitySet Name="Distrito" EntityType="Self.Distrito" />
+          <EntitySet Name="Marca" EntityType="Self.Marca" />
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" />
+          <EntitySet Name="Perfil" EntityType="Self.Perfil" />
+          <EntitySet Name="Permisos" EntityType="Self.Permisos" />
+          <EntitySet Name="PermisosxPerfil" EntityType="Self.PermisosxPerfil" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="ProductosxPedido" EntityType="Self.ProductosxPedido" />
+          <EntitySet Name="Provincia" EntityType="Self.Provincia" />
+          <EntitySet Name="TelefonoCliente" EntityType="Self.TelefonoCliente" />
+          <EntitySet Name="TipoDireccion" EntityType="Self.TipoDireccion" />
+          <EntitySet Name="TipoTelefono" EntityType="Self.TipoTelefono" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <EntitySet Name="Visita" EntityType="Self.Visita" />
+          <AssociationSet Name="FK_Canton_Provincia" Association="Self.FK_Canton_Provincia">
+            <End Role="Provincia" EntitySet="Provincia" />
+            <End Role="Canton" EntitySet="Canton" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DireccionCliente_Canton" Association="Self.FK_DireccionCliente_Canton">
+            <End Role="Canton" EntitySet="Canton" />
+            <End Role="DireccionCliente" EntitySet="DireccionCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Distrito_Canton" Association="Self.FK_Distrito_Canton">
+            <End Role="Canton" EntitySet="Canton" />
+            <End Role="Distrito" EntitySet="Distrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DireccionCliente_Cliente" Association="Self.FK_DireccionCliente_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="DireccionCliente" EntitySet="DireccionCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedido_Cliente" Association="Self.FK_Pedido_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TelefonoCliente_Cliente" Association="Self.FK_TelefonoCliente_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="TelefonoCliente" EntitySet="TelefonoCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visita_Cliente" Association="Self.FK_Visita_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Visita" EntitySet="Visita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DireccionCliente_Distrito" Association="Self.FK_DireccionCliente_Distrito">
+            <End Role="Distrito" EntitySet="Distrito" />
+            <End Role="DireccionCliente" EntitySet="DireccionCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DireccionCliente_Provincia" Association="Self.FK_DireccionCliente_Provincia">
+            <End Role="Provincia" EntitySet="Provincia" />
+            <End Role="DireccionCliente" EntitySet="DireccionCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DireccionCliente_TipoDireccion" Association="Self.FK_DireccionCliente_TipoDireccion">
+            <End Role="TipoDireccion" EntitySet="TipoDireccion" />
+            <End Role="DireccionCliente" EntitySet="DireccionCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto_Marca" Association="Self.FK_Producto_Marca">
+            <End Role="Marca" EntitySet="Marca" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedido_Usuario" Association="Self.FK_Pedido_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductosxPedido_Pedido" Association="Self.FK_ProductosxPedido_Pedido">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="ProductosxPedido" EntitySet="ProductosxPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermisosxPerfil_Perfil" Association="Self.FK_PermisosxPerfil_Perfil">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="PermisosxPerfil" EntitySet="PermisosxPerfil" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Perfil" Association="Self.FK_Usuario_Perfil">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermisosxPerfil_Permisos" Association="Self.FK_PermisosxPerfil_Permisos">
+            <End Role="Permisos" EntitySet="Permisos" />
+            <End Role="PermisosxPerfil" EntitySet="PermisosxPerfil" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductosxPedido_Producto" Association="Self.FK_ProductosxPedido_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="ProductosxPedido" EntitySet="ProductosxPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TelefonoCliente_TipoTelefono" Association="Self.FK_TelefonoCliente_TipoTelefono">
+            <End Role="TipoTelefono" EntitySet="TipoTelefono" />
+            <End Role="TelefonoCliente" EntitySet="TelefonoCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visita_Usuario" Association="Self.FK_Visita_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Visita" EntitySet="Visita" />
+          </AssociationSet>
+          <FunctionImport Name="crud_ClienteDelete">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_ClienteInsert" ReturnType="Collection(Decimal)">
+            <Parameter Name="idRole" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellido" Mode="In" Type="String" />
+            <Parameter Name="cedula" Mode="In" Type="String" />
+            <Parameter Name="correo" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_ClienteRead" ReturnType="Collection(ARE_EskolorModel.crud_ClienteRead_Result)" />
+          <FunctionImport Name="crud_ClienteReadID" ReturnType="Collection(ARE_EskolorModel.crud_ClienteReadID_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_ClienteUpdate">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="idRole" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellido" Mode="In" Type="String" />
+            <Parameter Name="cedula" Mode="In" Type="String" />
+            <Parameter Name="correo" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_DireccionClienteDelete">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_DireccionClienteInsert" ReturnType="Collection(Decimal)">
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
+            <Parameter Name="direccion" Mode="In" Type="String" />
+            <Parameter Name="idProvincia" Mode="In" Type="Int32" />
+            <Parameter Name="idCanton" Mode="In" Type="Int32" />
+            <Parameter Name="idDistrito" Mode="In" Type="Int32" />
+            <Parameter Name="idTipoDireccion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_DireccionClienteRead" ReturnType="Collection(ARE_EskolorModel.crud_DireccionClienteRead_Result)" />
+          <FunctionImport Name="crud_DireccionClienteReadID" ReturnType="Collection(ARE_EskolorModel.crud_DireccionClienteReadID_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_DireccionClienteUpdate">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
+            <Parameter Name="direccion" Mode="In" Type="String" />
+            <Parameter Name="idProvincia" Mode="In" Type="Int32" />
+            <Parameter Name="idCanton" Mode="In" Type="Int32" />
+            <Parameter Name="idDistrito" Mode="In" Type="Int32" />
+            <Parameter Name="idTipoDireccion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_MarcaDelete">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_MarcaInsert" ReturnType="Collection(Decimal)">
+            <Parameter Name="marca" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_MarcaRead" ReturnType="Collection(ARE_EskolorModel.crud_MarcaRead_Result)" />
+          <FunctionImport Name="crud_MarcaReadID" ReturnType="Collection(ARE_EskolorModel.crud_MarcaReadID_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_MarcaUpdate">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="marca" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_PedidoDelete">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_PedidoInsert" ReturnType="Collection(Decimal)">
+            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
+            <Parameter Name="idEstado" Mode="In" Type="Int32" />
+            <Parameter Name="idPedido" Mode="In" Type="Int32" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_PedidoRead" ReturnType="Collection(ARE_EskolorModel.crud_PedidoRead_Result)" />
+          <FunctionImport Name="crud_PedidoReadID" ReturnType="Collection(ARE_EskolorModel.crud_PedidoReadID_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_PedidoUpdate">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
+            <Parameter Name="idEstado" Mode="In" Type="Int32" />
+            <Parameter Name="idPedido" Mode="In" Type="Int32" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_PerfilDelete">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_PerfilInsert" ReturnType="Collection(Decimal)">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_PerfilRead" ReturnType="Collection(ARE_EskolorModel.crud_PerfilRead_Result)" />
+          <FunctionImport Name="crud_PerfilReadID" ReturnType="Collection(ARE_EskolorModel.crud_PerfilReadID_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_PerfilUpdate">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_PermisosDelete">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_PermisosInsert" ReturnType="Collection(Decimal)">
+            <Parameter Name="permiso" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_PermisosRead" ReturnType="Collection(ARE_EskolorModel.crud_PermisosRead_Result)" />
+          <FunctionImport Name="crud_PermisosReadID" ReturnType="Collection(ARE_EskolorModel.crud_PermisosReadID_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_PermisosxPerfilDelete">
+            <Parameter Name="idPermiso" Mode="In" Type="Int32" />
+            <Parameter Name="idPerfil" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_PermisosxPerfilInsert" ReturnType="Collection(Decimal)">
+            <Parameter Name="idPermiso" Mode="In" Type="Int32" />
+            <Parameter Name="idPerfil" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_PermisosxPerfilRead" ReturnType="Collection(ARE_EskolorModel.crud_PermisosxPerfilRead_Result)">
+            <Parameter Name="idPerfil" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_PermisosxPerfilReadID" ReturnType="Collection(ARE_EskolorModel.crud_PermisosxPerfilReadID_Result)">
+            <Parameter Name="idPermiso" Mode="In" Type="Int32" />
+            <Parameter Name="idPerfil" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_ProductoDelete">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_ProductoInsert" ReturnType="Collection(Decimal)">
+            <Parameter Name="producto" Mode="In" Type="String" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="idMarca" Mode="In" Type="Int32" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_ProductoRead" ReturnType="Collection(ARE_EskolorModel.crud_ProductoRead_Result)" />
+          <FunctionImport Name="crud_ProductoReadID" ReturnType="Collection(ARE_EskolorModel.crud_ProductoReadID_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_ProductosxPedidoDelete">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_ProductosxPedidoInsert" ReturnType="Collection(Decimal)">
+            <Parameter Name="idPedido" Mode="In" Type="Int32" />
+            <Parameter Name="idProducto" Mode="In" Type="Int32" />
+            <Parameter Name="cantidad" Mode="In" Type="Double" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_ProductosxPedidoRead" ReturnType="Collection(ARE_EskolorModel.crud_ProductosxPedidoRead_Result)">
+            <Parameter Name="idPedido" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_ProductosxPedidoReadID" ReturnType="Collection(ARE_EskolorModel.crud_ProductosxPedidoReadID_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_ProductosxPedidoUpdate">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="idPedido" Mode="In" Type="Int32" />
+            <Parameter Name="idProducto" Mode="In" Type="Int32" />
+            <Parameter Name="cantidad" Mode="In" Type="Double" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_ProductoUpdate">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="producto" Mode="In" Type="String" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="idMarca" Mode="In" Type="Int32" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_TelefonoClienteDelete">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_TelefonoClienteInsert" ReturnType="Collection(Decimal)">
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
+            <Parameter Name="idTipoTelefono" Mode="In" Type="Int32" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_TelefonoClienteRead" ReturnType="Collection(ARE_EskolorModel.crud_TelefonoClienteRead_Result)">
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_TelefonoClienteReadID" ReturnType="Collection(ARE_EskolorModel.crud_TelefonoClienteReadID_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_TelefonoClienteUpdate">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
+            <Parameter Name="idTipoTelefono" Mode="In" Type="Int32" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_TipoDireccionDelete">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_TipoDireccionInsert" ReturnType="Collection(Decimal)">
+            <Parameter Name="tipoDireccion" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_TipoDireccionRead" ReturnType="Collection(ARE_EskolorModel.crud_TipoDireccionRead_Result)" />
+          <FunctionImport Name="crud_TipoDireccionReadID" ReturnType="Collection(ARE_EskolorModel.crud_TipoDireccionReadID_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_TipoDireccionUpdate">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="tipoDireccion" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_TipoTelefonoDelete">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_TipoTelefonoInsert" ReturnType="Collection(Decimal)">
+            <Parameter Name="tipoTelefono" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_TipoTelefonoRead" ReturnType="Collection(ARE_EskolorModel.crud_TipoTelefonoRead_Result)" />
+          <FunctionImport Name="crud_TipoTelefonoReadID" ReturnType="Collection(ARE_EskolorModel.crud_TipoTelefonoReadID_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_TipoTelefonoUpdate">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="tipoTelefono" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_UsuarioDelete">
+            <Parameter Name="Original_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Original_idPerfil" Mode="In" Type="Int32" />
+            <Parameter Name="Original_usuario" Mode="In" Type="String" />
+            <Parameter Name="Original_contraseña" Mode="In" Type="String" />
+            <Parameter Name="Original_nombre" Mode="In" Type="String" />
+            <Parameter Name="Original_apellido" Mode="In" Type="String" />
+            <Parameter Name="Original_correoElectronico" Mode="In" Type="String" />
+            <Parameter Name="Original_estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_UsuarioInsert" ReturnType="Collection(ARE_EskolorModel.crud_UsuarioInsert_Result)">
+            <Parameter Name="idPerfil" Mode="In" Type="Int32" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="contraseña" Mode="In" Type="String" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellido" Mode="In" Type="String" />
+            <Parameter Name="correoElectronico" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_UsuarioRead" ReturnType="Collection(ARE_EskolorModel.crud_UsuarioRead_Result)" />
+          <FunctionImport Name="crud_UsuarioUpdate" ReturnType="Collection(ARE_EskolorModel.crud_UsuarioUpdate_Result)">
+            <Parameter Name="idPerfil" Mode="In" Type="Int32" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="contraseña" Mode="In" Type="String" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellido" Mode="In" Type="String" />
+            <Parameter Name="correoElectronico" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+            <Parameter Name="Original_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Original_idPerfil" Mode="In" Type="Int32" />
+            <Parameter Name="Original_usuario" Mode="In" Type="String" />
+            <Parameter Name="Original_contraseña" Mode="In" Type="String" />
+            <Parameter Name="Original_nombre" Mode="In" Type="String" />
+            <Parameter Name="Original_apellido" Mode="In" Type="String" />
+            <Parameter Name="Original_correoElectronico" Mode="In" Type="String" />
+            <Parameter Name="Original_estado" Mode="In" Type="String" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_VisitaDelete">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_VisitaInsert" ReturnType="Collection(Decimal)">
+            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="fechaHoraInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaHoraFinal" Mode="In" Type="DateTime" />
+            <Parameter Name="ubicacionGPS" Mode="In" Type="String" />
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="crud_VisitaRead" ReturnType="Collection(ARE_EskolorModel.crud_VisitaRead_Result)" />
+          <FunctionImport Name="crud_VisitaReadID" ReturnType="Collection(ARE_EskolorModel.crud_VisitaReadID_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="crud_VisitaUpdate">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="fechaHoraInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaHoraFinal" Mode="In" Type="DateTime" />
+            <Parameter Name="ubicacionGPS" Mode="In" Type="String" />
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="crud_ClienteRead_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="idRole" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="apellido" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="cedula" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="correo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="crud_ClienteReadID_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="idRole" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="apellido" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="cedula" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="correo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="crud_DireccionClienteRead_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="idCliente" Nullable="false" />
+          <Property Type="String" Name="direccion" Nullable="false" MaxLength="1000" />
+          <Property Type="Int32" Name="idProvincia" Nullable="false" />
+          <Property Type="Int32" Name="idCanton" Nullable="false" />
+          <Property Type="Int32" Name="idDistrito" Nullable="false" />
+          <Property Type="Int32" Name="idTipoDireccion" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="crud_DireccionClienteReadID_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="idCliente" Nullable="false" />
+          <Property Type="String" Name="direccion" Nullable="false" MaxLength="1000" />
+          <Property Type="Int32" Name="idProvincia" Nullable="false" />
+          <Property Type="Int32" Name="idCanton" Nullable="false" />
+          <Property Type="Int32" Name="idDistrito" Nullable="false" />
+          <Property Type="Int32" Name="idTipoDireccion" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="crud_MarcaRead_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="marca" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="crud_MarcaReadID_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="marca" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="crud_PedidoRead_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="idUsuario" Nullable="false" />
+          <Property Type="Int32" Name="idCliente" Nullable="false" />
+          <Property Type="Int32" Name="idEstado" Nullable="false" />
+          <Property Type="Int32" Name="idPedido" Nullable="false" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="crud_PedidoReadID_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="idUsuario" Nullable="false" />
+          <Property Type="Int32" Name="idCliente" Nullable="false" />
+          <Property Type="Int32" Name="idEstado" Nullable="false" />
+          <Property Type="Int32" Name="idPedido" Nullable="false" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="crud_PerfilRead_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="crud_PerfilReadID_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="crud_PermisosRead_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="permiso" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="crud_PermisosReadID_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="permiso" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="crud_PermisosxPerfilRead_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="idPermiso" Nullable="false" />
+          <Property Type="Int32" Name="idPerfil" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="crud_PermisosxPerfilReadID_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="idPermiso" Nullable="false" />
+          <Property Type="Int32" Name="idPerfil" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="crud_ProductoRead_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="producto" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="300" />
+          <Property Type="Int32" Name="idMarca" Nullable="false" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="crud_ProductoReadID_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="producto" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="300" />
+          <Property Type="Int32" Name="idMarca" Nullable="false" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="crud_ProductosxPedidoRead_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="idPedido" Nullable="false" />
+          <Property Type="Int32" Name="idProducto" Nullable="false" />
+          <Property Type="Double" Name="cantidad" Nullable="false" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="crud_ProductosxPedidoReadID_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="idPedido" Nullable="false" />
+          <Property Type="Int32" Name="idProducto" Nullable="false" />
+          <Property Type="Double" Name="cantidad" Nullable="false" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="crud_TelefonoClienteRead_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="idCliente" Nullable="false" />
+          <Property Type="Int32" Name="idTipoTelefono" Nullable="false" />
+          <Property Type="String" Name="telefono" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="crud_TelefonoClienteReadID_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="idCliente" Nullable="false" />
+          <Property Type="Int32" Name="idTipoTelefono" Nullable="false" />
+          <Property Type="String" Name="telefono" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="crud_TipoDireccionRead_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="tipoDireccion" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="crud_TipoDireccionReadID_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="tipoDireccion" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="crud_TipoTelefonoRead_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="tipoTelefono" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="crud_TipoTelefonoReadID_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="tipoTelefono" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="crud_UsuarioInsert_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="idPerfil" Nullable="false" />
+          <Property Type="String" Name="usuario" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="contraseña" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="apellido" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="correoElectronico" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="crud_UsuarioRead_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="idPerfil" Nullable="false" />
+          <Property Type="String" Name="usuario" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="contraseña" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="apellido" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="correoElectronico" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="crud_UsuarioUpdate_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="idPerfil" Nullable="false" />
+          <Property Type="String" Name="usuario" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="contraseña" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="apellido" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="correoElectronico" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="crud_VisitaRead_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="idUsuario" Nullable="false" />
+          <Property Type="DateTime" Name="fechaHoraInicio" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="fechaHoraFinal" Nullable="false" Precision="23" />
+          <Property Type="String" Name="ubicacionGPS" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="idCliente" Nullable="false" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="crud_VisitaReadID_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="idUsuario" Nullable="false" />
+          <Property Type="DateTime" Name="fechaHoraInicio" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="fechaHoraFinal" Nullable="false" Precision="23" />
+          <Property Type="String" Name="ubicacionGPS" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="idCliente" Nullable="false" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ARE_EskolorModelStoreContainer" CdmEntityContainer="ARE_EskolorEntities">
+          <EntitySetMapping Name="Canton">
+            <EntityTypeMapping TypeName="ARE_EskolorModel.Canton">
+              <MappingFragment StoreEntitySet="Canton">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
+                <ScalarProperty Name="canton1" ColumnName="canton" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="ARE_EskolorModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idRole" ColumnName="idRole" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DireccionCliente">
+            <EntityTypeMapping TypeName="ARE_EskolorModel.DireccionCliente">
+              <MappingFragment StoreEntitySet="DireccionCliente">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
+                <ScalarProperty Name="idCanton" ColumnName="idCanton" />
+                <ScalarProperty Name="idDistrito" ColumnName="idDistrito" />
+                <ScalarProperty Name="idTipoDireccion" ColumnName="idTipoDireccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Distrito">
+            <EntityTypeMapping TypeName="ARE_EskolorModel.Distrito">
+              <MappingFragment StoreEntitySet="Distrito">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idCanton" ColumnName="idCanton" />
+                <ScalarProperty Name="Distrito1" ColumnName="Distrito" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marca">
+            <EntityTypeMapping TypeName="ARE_EskolorModel.Marca">
+              <MappingFragment StoreEntitySet="Marca">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="marca1" ColumnName="marca" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pedido">
+            <EntityTypeMapping TypeName="ARE_EskolorModel.Pedido">
+              <MappingFragment StoreEntitySet="Pedido">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="idPedido" ColumnName="idPedido" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Perfil">
+            <EntityTypeMapping TypeName="ARE_EskolorModel.Perfil">
+              <MappingFragment StoreEntitySet="Perfil">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permisos">
+            <EntityTypeMapping TypeName="ARE_EskolorModel.Permisos">
+              <MappingFragment StoreEntitySet="Permisos">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="permiso" ColumnName="permiso" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PermisosxPerfil">
+            <EntityTypeMapping TypeName="ARE_EskolorModel.PermisosxPerfil">
+              <MappingFragment StoreEntitySet="PermisosxPerfil">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idPermiso" ColumnName="idPermiso" />
+                <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="ARE_EskolorModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="producto1" ColumnName="producto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductosxPedido">
+            <EntityTypeMapping TypeName="ARE_EskolorModel.ProductosxPedido">
+              <MappingFragment StoreEntitySet="ProductosxPedido">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idPedido" ColumnName="idPedido" />
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provincia">
+            <EntityTypeMapping TypeName="ARE_EskolorModel.Provincia">
+              <MappingFragment StoreEntitySet="Provincia">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="provincia1" ColumnName="provincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TelefonoCliente">
+            <EntityTypeMapping TypeName="ARE_EskolorModel.TelefonoCliente">
+              <MappingFragment StoreEntitySet="TelefonoCliente">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idTipoTelefono" ColumnName="idTipoTelefono" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoDireccion">
+            <EntityTypeMapping TypeName="ARE_EskolorModel.TipoDireccion">
+              <MappingFragment StoreEntitySet="TipoDireccion">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="tipoDireccion1" ColumnName="tipoDireccion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoTelefono">
+            <EntityTypeMapping TypeName="ARE_EskolorModel.TipoTelefono">
+              <MappingFragment StoreEntitySet="TipoTelefono">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="tipoTelefono1" ColumnName="tipoTelefono" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="ARE_EskolorModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+                <ScalarProperty Name="usuario1" ColumnName="usuario" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Visita">
+            <EntityTypeMapping TypeName="ARE_EskolorModel.Visita">
+              <MappingFragment StoreEntitySet="Visita">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="fechaHoraInicio" ColumnName="fechaHoraInicio" />
+                <ScalarProperty Name="fechaHoraFinal" ColumnName="fechaHoraFinal" />
+                <ScalarProperty Name="ubicacionGPS" ColumnName="ubicacionGPS" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="crud_ClienteDelete" FunctionName="ARE_EskolorModel.Store.crud_ClienteDelete" />
+          <FunctionImportMapping FunctionImportName="crud_ClienteInsert" FunctionName="ARE_EskolorModel.Store.crud_ClienteInsert" />
+          <FunctionImportMapping FunctionImportName="crud_ClienteRead" FunctionName="ARE_EskolorModel.Store.crud_ClienteRead">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_ClienteRead_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idRole" ColumnName="idRole" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_ClienteReadID" FunctionName="ARE_EskolorModel.Store.crud_ClienteReadID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_ClienteReadID_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idRole" ColumnName="idRole" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_ClienteUpdate" FunctionName="ARE_EskolorModel.Store.crud_ClienteUpdate" />
+          <FunctionImportMapping FunctionImportName="crud_DireccionClienteDelete" FunctionName="ARE_EskolorModel.Store.crud_DireccionClienteDelete" />
+          <FunctionImportMapping FunctionImportName="crud_DireccionClienteInsert" FunctionName="ARE_EskolorModel.Store.crud_DireccionClienteInsert" />
+          <FunctionImportMapping FunctionImportName="crud_DireccionClienteRead" FunctionName="ARE_EskolorModel.Store.crud_DireccionClienteRead">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_DireccionClienteRead_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
+                <ScalarProperty Name="idCanton" ColumnName="idCanton" />
+                <ScalarProperty Name="idDistrito" ColumnName="idDistrito" />
+                <ScalarProperty Name="idTipoDireccion" ColumnName="idTipoDireccion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_DireccionClienteReadID" FunctionName="ARE_EskolorModel.Store.crud_DireccionClienteReadID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_DireccionClienteReadID_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
+                <ScalarProperty Name="idCanton" ColumnName="idCanton" />
+                <ScalarProperty Name="idDistrito" ColumnName="idDistrito" />
+                <ScalarProperty Name="idTipoDireccion" ColumnName="idTipoDireccion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_DireccionClienteUpdate" FunctionName="ARE_EskolorModel.Store.crud_DireccionClienteUpdate" />
+          <FunctionImportMapping FunctionImportName="crud_MarcaDelete" FunctionName="ARE_EskolorModel.Store.crud_MarcaDelete" />
+          <FunctionImportMapping FunctionImportName="crud_MarcaInsert" FunctionName="ARE_EskolorModel.Store.crud_MarcaInsert" />
+          <FunctionImportMapping FunctionImportName="crud_MarcaRead" FunctionName="ARE_EskolorModel.Store.crud_MarcaRead">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_MarcaRead_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_MarcaReadID" FunctionName="ARE_EskolorModel.Store.crud_MarcaReadID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_MarcaReadID_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_MarcaUpdate" FunctionName="ARE_EskolorModel.Store.crud_MarcaUpdate" />
+          <FunctionImportMapping FunctionImportName="crud_PedidoDelete" FunctionName="ARE_EskolorModel.Store.crud_PedidoDelete" />
+          <FunctionImportMapping FunctionImportName="crud_PedidoInsert" FunctionName="ARE_EskolorModel.Store.crud_PedidoInsert" />
+          <FunctionImportMapping FunctionImportName="crud_PedidoRead" FunctionName="ARE_EskolorModel.Store.crud_PedidoRead">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_PedidoRead_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="idPedido" ColumnName="idPedido" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_PedidoReadID" FunctionName="ARE_EskolorModel.Store.crud_PedidoReadID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_PedidoReadID_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="idPedido" ColumnName="idPedido" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_PedidoUpdate" FunctionName="ARE_EskolorModel.Store.crud_PedidoUpdate" />
+          <FunctionImportMapping FunctionImportName="crud_PerfilDelete" FunctionName="ARE_EskolorModel.Store.crud_PerfilDelete" />
+          <FunctionImportMapping FunctionImportName="crud_PerfilInsert" FunctionName="ARE_EskolorModel.Store.crud_PerfilInsert" />
+          <FunctionImportMapping FunctionImportName="crud_PerfilRead" FunctionName="ARE_EskolorModel.Store.crud_PerfilRead">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_PerfilRead_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_PerfilReadID" FunctionName="ARE_EskolorModel.Store.crud_PerfilReadID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_PerfilReadID_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_PerfilUpdate" FunctionName="ARE_EskolorModel.Store.crud_PerfilUpdate" />
+          <FunctionImportMapping FunctionImportName="crud_PermisosDelete" FunctionName="ARE_EskolorModel.Store.crud_PermisosDelete" />
+          <FunctionImportMapping FunctionImportName="crud_PermisosInsert" FunctionName="ARE_EskolorModel.Store.crud_PermisosInsert" />
+          <FunctionImportMapping FunctionImportName="crud_PermisosRead" FunctionName="ARE_EskolorModel.Store.crud_PermisosRead">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_PermisosRead_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="permiso" ColumnName="permiso" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_PermisosReadID" FunctionName="ARE_EskolorModel.Store.crud_PermisosReadID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_PermisosReadID_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="permiso" ColumnName="permiso" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_PermisosxPerfilDelete" FunctionName="ARE_EskolorModel.Store.crud_PermisosxPerfilDelete" />
+          <FunctionImportMapping FunctionImportName="crud_PermisosxPerfilInsert" FunctionName="ARE_EskolorModel.Store.crud_PermisosxPerfilInsert" />
+          <FunctionImportMapping FunctionImportName="crud_PermisosxPerfilRead" FunctionName="ARE_EskolorModel.Store.crud_PermisosxPerfilRead">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_PermisosxPerfilRead_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idPermiso" ColumnName="idPermiso" />
+                <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_PermisosxPerfilReadID" FunctionName="ARE_EskolorModel.Store.crud_PermisosxPerfilReadID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_PermisosxPerfilReadID_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idPermiso" ColumnName="idPermiso" />
+                <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_ProductoDelete" FunctionName="ARE_EskolorModel.Store.crud_ProductoDelete" />
+          <FunctionImportMapping FunctionImportName="crud_ProductoInsert" FunctionName="ARE_EskolorModel.Store.crud_ProductoInsert" />
+          <FunctionImportMapping FunctionImportName="crud_ProductoRead" FunctionName="ARE_EskolorModel.Store.crud_ProductoRead">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_ProductoRead_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="producto" ColumnName="producto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_ProductoReadID" FunctionName="ARE_EskolorModel.Store.crud_ProductoReadID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_ProductoReadID_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="producto" ColumnName="producto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_ProductosxPedidoDelete" FunctionName="ARE_EskolorModel.Store.crud_ProductosxPedidoDelete" />
+          <FunctionImportMapping FunctionImportName="crud_ProductosxPedidoInsert" FunctionName="ARE_EskolorModel.Store.crud_ProductosxPedidoInsert" />
+          <FunctionImportMapping FunctionImportName="crud_ProductosxPedidoRead" FunctionName="ARE_EskolorModel.Store.crud_ProductosxPedidoRead">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_ProductosxPedidoRead_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idPedido" ColumnName="idPedido" />
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_ProductosxPedidoReadID" FunctionName="ARE_EskolorModel.Store.crud_ProductosxPedidoReadID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_ProductosxPedidoReadID_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idPedido" ColumnName="idPedido" />
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_ProductosxPedidoUpdate" FunctionName="ARE_EskolorModel.Store.crud_ProductosxPedidoUpdate" />
+          <FunctionImportMapping FunctionImportName="crud_ProductoUpdate" FunctionName="ARE_EskolorModel.Store.crud_ProductoUpdate" />
+          <FunctionImportMapping FunctionImportName="crud_TelefonoClienteDelete" FunctionName="ARE_EskolorModel.Store.crud_TelefonoClienteDelete" />
+          <FunctionImportMapping FunctionImportName="crud_TelefonoClienteInsert" FunctionName="ARE_EskolorModel.Store.crud_TelefonoClienteInsert" />
+          <FunctionImportMapping FunctionImportName="crud_TelefonoClienteRead" FunctionName="ARE_EskolorModel.Store.crud_TelefonoClienteRead">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_TelefonoClienteRead_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idTipoTelefono" ColumnName="idTipoTelefono" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_TelefonoClienteReadID" FunctionName="ARE_EskolorModel.Store.crud_TelefonoClienteReadID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_TelefonoClienteReadID_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idTipoTelefono" ColumnName="idTipoTelefono" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_TelefonoClienteUpdate" FunctionName="ARE_EskolorModel.Store.crud_TelefonoClienteUpdate" />
+          <FunctionImportMapping FunctionImportName="crud_TipoDireccionDelete" FunctionName="ARE_EskolorModel.Store.crud_TipoDireccionDelete" />
+          <FunctionImportMapping FunctionImportName="crud_TipoDireccionInsert" FunctionName="ARE_EskolorModel.Store.crud_TipoDireccionInsert" />
+          <FunctionImportMapping FunctionImportName="crud_TipoDireccionRead" FunctionName="ARE_EskolorModel.Store.crud_TipoDireccionRead">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_TipoDireccionRead_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="tipoDireccion" ColumnName="tipoDireccion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_TipoDireccionReadID" FunctionName="ARE_EskolorModel.Store.crud_TipoDireccionReadID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_TipoDireccionReadID_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="tipoDireccion" ColumnName="tipoDireccion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_TipoDireccionUpdate" FunctionName="ARE_EskolorModel.Store.crud_TipoDireccionUpdate" />
+          <FunctionImportMapping FunctionImportName="crud_TipoTelefonoDelete" FunctionName="ARE_EskolorModel.Store.crud_TipoTelefonoDelete" />
+          <FunctionImportMapping FunctionImportName="crud_TipoTelefonoInsert" FunctionName="ARE_EskolorModel.Store.crud_TipoTelefonoInsert" />
+          <FunctionImportMapping FunctionImportName="crud_TipoTelefonoRead" FunctionName="ARE_EskolorModel.Store.crud_TipoTelefonoRead">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_TipoTelefonoRead_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="tipoTelefono" ColumnName="tipoTelefono" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_TipoTelefonoReadID" FunctionName="ARE_EskolorModel.Store.crud_TipoTelefonoReadID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_TipoTelefonoReadID_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="tipoTelefono" ColumnName="tipoTelefono" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_TipoTelefonoUpdate" FunctionName="ARE_EskolorModel.Store.crud_TipoTelefonoUpdate" />
+          <FunctionImportMapping FunctionImportName="crud_UsuarioDelete" FunctionName="ARE_EskolorModel.Store.crud_UsuarioDelete" />
+          <FunctionImportMapping FunctionImportName="crud_UsuarioInsert" FunctionName="ARE_EskolorModel.Store.crud_UsuarioInsert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_UsuarioInsert_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_UsuarioRead" FunctionName="ARE_EskolorModel.Store.crud_UsuarioRead">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_UsuarioRead_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_UsuarioUpdate" FunctionName="ARE_EskolorModel.Store.crud_UsuarioUpdate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_UsuarioUpdate_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_VisitaDelete" FunctionName="ARE_EskolorModel.Store.crud_VisitaDelete" />
+          <FunctionImportMapping FunctionImportName="crud_VisitaInsert" FunctionName="ARE_EskolorModel.Store.crud_VisitaInsert" />
+          <FunctionImportMapping FunctionImportName="crud_VisitaRead" FunctionName="ARE_EskolorModel.Store.crud_VisitaRead">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_VisitaRead_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="fechaHoraInicio" ColumnName="fechaHoraInicio" />
+                <ScalarProperty Name="fechaHoraFinal" ColumnName="fechaHoraFinal" />
+                <ScalarProperty Name="ubicacionGPS" ColumnName="ubicacionGPS" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_VisitaReadID" FunctionName="ARE_EskolorModel.Store.crud_VisitaReadID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ARE_EskolorModel.crud_VisitaReadID_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="fechaHoraInicio" ColumnName="fechaHoraInicio" />
+                <ScalarProperty Name="fechaHoraFinal" ColumnName="fechaHoraFinal" />
+                <ScalarProperty Name="ubicacionGPS" ColumnName="ubicacionGPS" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="crud_VisitaUpdate" FunctionName="ARE_EskolorModel.Store.crud_VisitaUpdate" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

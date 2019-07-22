@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="43dc87ad8beb482582e17951bb10dbd7" Name="Diagram1">
+        <EntityTypeShape EntityType="ARE_EskolorModel.Canton" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARE_EskolorModel.Cliente" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARE_EskolorModel.DireccionCliente" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARE_EskolorModel.Distrito" Width="1.5" PointX="0.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARE_EskolorModel.Marca" Width="1.5" PointX="3.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARE_EskolorModel.Pedido" Width="1.5" PointX="6" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARE_EskolorModel.Perfil" Width="1.5" PointX="1.5" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARE_EskolorModel.Permisos" Width="1.5" PointX="4.5" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARE_EskolorModel.PermisosxPerfil" Width="1.5" PointX="6.75" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARE_EskolorModel.Producto" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARE_EskolorModel.ProductosxPedido" Width="1.5" PointX="8.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARE_EskolorModel.Provincia" Width="1.5" PointX="1.5" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARE_EskolorModel.TelefonoCliente" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARE_EskolorModel.TipoDireccion" Width="1.5" PointX="0.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARE_EskolorModel.TipoTelefono" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARE_EskolorModel.Usuario" Width="1.5" PointX="3.75" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARE_EskolorModel.Visita" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <AssociationConnector Association="ARE_EskolorModel.FK_Canton_Provincia" ManuallyRouted="false" />
+        <AssociationConnector Association="ARE_EskolorModel.FK_DireccionCliente_Canton" ManuallyRouted="false" />
+        <AssociationConnector Association="ARE_EskolorModel.FK_Distrito_Canton" ManuallyRouted="false" />
+        <AssociationConnector Association="ARE_EskolorModel.FK_DireccionCliente_Cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="ARE_EskolorModel.FK_Pedido_Cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="ARE_EskolorModel.FK_TelefonoCliente_Cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="ARE_EskolorModel.FK_Visita_Cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="ARE_EskolorModel.FK_DireccionCliente_Distrito" ManuallyRouted="false" />
+        <AssociationConnector Association="ARE_EskolorModel.FK_DireccionCliente_Provincia" ManuallyRouted="false" />
+        <AssociationConnector Association="ARE_EskolorModel.FK_DireccionCliente_TipoDireccion" ManuallyRouted="false" />
+        <AssociationConnector Association="ARE_EskolorModel.FK_Producto_Marca" ManuallyRouted="false" />
+        <AssociationConnector Association="ARE_EskolorModel.FK_Pedido_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="ARE_EskolorModel.FK_ProductosxPedido_Pedido" ManuallyRouted="false" />
+        <AssociationConnector Association="ARE_EskolorModel.FK_PermisosxPerfil_Perfil" ManuallyRouted="false" />
+        <AssociationConnector Association="ARE_EskolorModel.FK_Usuario_Perfil" ManuallyRouted="false" />
+        <AssociationConnector Association="ARE_EskolorModel.FK_PermisosxPerfil_Permisos" ManuallyRouted="false" />
+        <AssociationConnector Association="ARE_EskolorModel.FK_ProductosxPedido_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="ARE_EskolorModel.FK_TelefonoCliente_TipoTelefono" ManuallyRouted="false" />
+        <AssociationConnector Association="ARE_EskolorModel.FK_Visita_Usuario" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
